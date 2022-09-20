@@ -13,13 +13,17 @@ interface ProductProps {
     id: string
     name: string
     imageUrl: string
-    price: number
+    price: string
     description: string
+    defaultPriceId: string
   }
 }
 
-
 export default function Product({ product }: ProductProps) {
+  function handleCheckout() {
+    console.log(product.defaultPriceId)
+  }
+
   return (
     <ProductContainer>
       <ImageContainer>
@@ -32,7 +36,7 @@ export default function Product({ product }: ProductProps) {
 
         <p>{product.description}</p>
 
-        <button>Comprar agora</button>
+        <button onClick={handleCheckout}>Comprar agora</button>
       </ProductDetails>
     </ProductContainer>
   )
@@ -69,6 +73,7 @@ export const getStaticProps: GetStaticProps<any, {id: string}> =
             currency:'BRL',
           }).format(price.unit_amount / 100),
           description: product.description,
+          defaultPriceId: price.id
         }
       },
       revalidate: 60 * 60 * 1,
