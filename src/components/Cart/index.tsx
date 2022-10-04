@@ -8,7 +8,7 @@ export function Cart () {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <CartButton/>
+        <CartButton />
       </Dialog.Trigger>
 
       <Dialog.Portal>
