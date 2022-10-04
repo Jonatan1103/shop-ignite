@@ -6,8 +6,13 @@ import { CartButton } from "../CartButton";
 import { CartClose, CartContent, CartFinalization, CartProduct, CartProductDetails, CartProductImage, FinalizationDetails } from './styles';
 
 export function Cart () {
-  const { cartItems } = useCart()
+  const { cartItems, cartTotal, removeCartItem } = useCart()
   const cartQuantity = cartItems.length
+
+  const formattedCartTotal = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(cartTotal)
 
   return (
     <Dialog.Root>
@@ -27,21 +32,21 @@ export function Cart () {
         <section>
           {cartQuantity <= 0 && <p>Parece que seu carrinho esta vazio : (</p>}
 
-          {cartItems.map(cartItems => (
-            <CartProduct key={cartItems.id}>
+          {cartItems.map(cartItem => (
+            <CartProduct key={cartItem.id}>
               <CartProductImage>
                 <Image 
                   width={100} 
                   height={93} 
                   alt='' 
-                  src={cartItems.imageUrl} 
+                  src={cartItem.imageUrl} 
                 />
               </CartProductImage>
 
               <CartProductDetails>
-                <p>{cartItems.name}</p>
-                <strong>{cartItems.price}</strong>
-                <button onClick={() => console.log('removeu')}>
+                <p>{cartItem.name}</p>
+                <strong>{cartItem.price}</strong>
+                <button onClick={() => removeCartItem(cartItem.id)}>
                   Remover
                 </button>
               </CartProductDetails>
@@ -56,13 +61,13 @@ export function Cart () {
             <div>
               <span>Quantidade</span>
               <p>
-                {cartQuantity} {cartQuantity > 1 ? 'itens' : 'item'}
+                {cartQuantity} {cartQuantity === 1 ? 'item' : 'itens'}
               </p>
             </div>
 
             <div>
               <span>Valor Total</span>
-              <p>R$ 100,00</p>
+              <p>{formattedCartTotal}</p>
             </div>
           </FinalizationDetails>
 

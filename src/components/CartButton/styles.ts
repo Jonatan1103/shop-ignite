@@ -8,7 +8,7 @@ export const CartButtonContainer = styled('button', {
   borderRadius: 6,
   position: 'relative',
 
-  '&:disable': {
+  '&:disabled': {
     opacity: 0.6,
     cursor: 'not-allowed',
   },
