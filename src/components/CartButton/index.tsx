@@ -1,4 +1,4 @@
-import { ComponentProps } from "@stitches/react";
+import { ComponentProps } from "react";
 import { Handbag } from "phosphor-react";
 import { CartButtonContainer } from "./styles";
 
