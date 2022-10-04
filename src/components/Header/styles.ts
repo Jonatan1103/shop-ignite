@@ -6,4 +6,12 @@ export const HeaderContainer = styled('header', {
   maxWidth: '1180px',
   margin: '0 auto',
 
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  button: {
+    marginLeft: 'auto',
+  }
 })

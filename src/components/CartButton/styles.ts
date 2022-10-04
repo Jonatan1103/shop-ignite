@@ -8,6 +8,11 @@ export const CartButtonContainer = styled('button', {
   borderRadius: 6,
   position: 'relative',
 
+  '&:disable': {
+    opacity: 0.6,
+    cursor: 'not-allowed',
+  },
+
   background: "$gray800",
   color: '$gray500',
 
@@ -16,5 +21,5 @@ export const CartButtonContainer = styled('button', {
 
   svg: {
     fontSize: 24,
-  }
+  },
 })
