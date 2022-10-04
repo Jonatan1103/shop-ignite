@@ -10,14 +10,12 @@ import Stripe from "stripe";
 import Link from "next/link";
 import Head from "next/head";
 import { CartButton } from "../components/CartButton";
+import { useCart } from "../hooks/useCart";
+import { Iproduct } from "../context/CartContext";
+import { MouseEvent } from "react";
 
 interface HomeProps {
-  products: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-  }[]
+  products: Iproduct[]
 }
 
 export default function Home({ products }: HomeProps) {
@@ -27,6 +25,13 @@ export default function Home({ products }: HomeProps) {
       spacing: 48,
     }
   })
+
+  const { addToCart } = useCart()
+
+  function handleAddToCart(event: MouseEvent<HTMLButtonElement>, product: Iproduct) {
+    event.preventDefault()
+    addToCart(product)
+  }
 
   return (
     <>
@@ -50,7 +55,11 @@ export default function Home({ products }: HomeProps) {
                     <span>{product.price}</span>
                   </div>
 
-                  <CartButton color="green" size="large"/>
+                  <CartButton 
+                    color="green" 
+                    size="large"
+                    onClick={(event) => {handleAddToCart(event, product)}}
+                  />
                 </footer>
               </Product>
             </Link>
