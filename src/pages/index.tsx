@@ -19,6 +19,7 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
+
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 2.2,
@@ -40,32 +41,30 @@ export default function Home({ products }: HomeProps) {
       </Head>
 
       <HomeContainer ref={sliderRef} className="keen-slider">
-        {products.map(product => {
-          return (
-            <Link
-              href={`/product/${product.id}`}
-              key={product.id}
-              prefetch={false}
-            >
-              <Product className="keen-slider__slide">
-                <Image src={product.imageUrl} width={520} height={480} alt="" />
-                <footer>
-                  <div>
-                    <strong>{product.name}</strong>
-                    <span>{product.price}</span>
-                  </div>
+        {products.map(product => (
+          <Link
+            href={`/product/${product.id}`}
+            key={product.id}
+            prefetch={false}
+          >
+            <Product className="keen-slider__slide">
+              <Image src={product.imageUrl} width={520} height={480} alt="" />
+              <footer>
+                <div>
+                  <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </div>
 
-                  <CartButton 
-                    color="green" 
-                    size="large"
-                    disabled={checkIfExistsProductInCart(product.id)}
-                    onClick={(event) => {handleAddToCart(event, product)}}
-                  />
-                </footer>
-              </Product>
-            </Link>
-          )
-        })}
+                <CartButton 
+                  color="green" 
+                  size="large"
+                  disabled={checkIfExistsProductInCart(product.id)}
+                  onClick={(event) => {handleAddToCart(event, product)}}
+                />
+              </footer>
+            </Product>
+          </Link>
+        ))}
       </HomeContainer>
     </>
   )
