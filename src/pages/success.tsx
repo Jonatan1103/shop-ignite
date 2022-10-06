@@ -12,7 +12,7 @@ interface SuccessProps {
 }
 
 export default function Success({ customerName, productsImages }: SuccessProps) {
-  const textSingularOurPlural = productsImages.length > 1 ? 'camisetas já estam' : 'camiseta já está'
+  const textSingularOurPlural = productsImages.length > 1 ? 'camisetas' : 'camiseta'
 
   return (
     <>
@@ -33,7 +33,7 @@ export default function Success({ customerName, productsImages }: SuccessProps) 
         <h1>Compra efetuada!</h1>
 
         <p>
-          Uhuul <strong>{customerName}</strong>, sua compra de <strong>{productsImages.length}</strong> {textSingularOurPlural} a caminho da sua casa.
+          Uhuul <strong>{customerName}</strong>, sua compra de <strong>{productsImages.length}</strong> {textSingularOurPlural} já está a caminho da sua casa.
         </p>
 
         <Link href="/">
